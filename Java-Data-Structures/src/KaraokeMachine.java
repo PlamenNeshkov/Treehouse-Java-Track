@@ -16,6 +16,7 @@ public class KaraokeMachine {
         mSongBook = songBook;
         mReader = new BufferedReader(new InputStreamReader(System.in));
         mSongQueue = new ArrayDeque<>();
+
         mMenu = new HashMap<>();
         mMenu.put("add", "Add a new song to the song book");
         mMenu.put("play", "Play next song in the queue");
@@ -27,6 +28,7 @@ public class KaraokeMachine {
         System.out.printf("There are %d songs available and %d in the queue. Your options are:%n",
                 mSongBook.getSongCount(),
                 mSongQueue.size());
+
         for (Map.Entry<String, String> option : mMenu.entrySet()) {
             System.out.printf("%s - %s%n", option.getKey(), option.getValue());
         }
@@ -38,6 +40,7 @@ public class KaraokeMachine {
 
     public void run() {
         String choice = "";
+
         do {
             try {
                 choice = promptAction();
@@ -84,18 +87,23 @@ public class KaraokeMachine {
     private String promptArtist() throws IOException {
         System.out.println("Available artists:");
         List<String> artists = new ArrayList<>(mSongBook.getArtists());
+
         int index = promptForIndex(artists);
+
         return artists.get(index);
     }
 
     private Song promptSongForArtist(String artist) throws IOException {
         List<Song> songs = mSongBook.getSongsForArtist(artist);
         List<String> songTitles = new ArrayList<>();
+
         for (Song song : songs) {
             songTitles.add(song.getTitle());
         }
+
         System.out.printf("Available songs for %s: %n", artist);
         int index = promptForIndex(songTitles);
+
         return songs.get(index);
     }
 
@@ -105,14 +113,17 @@ public class KaraokeMachine {
             System.out.printf("%d.) %s%n", counter, option);
             counter++;
         }
+
         System.out.print("Your choice: ");
         String optionAsString = mReader.readLine();
         int choice = Integer.parseInt(optionAsString.trim());
+
         return choice - 1;
     }
 
     public void playNext() {
         Song song = mSongQueue.poll();
+
         if (song == null) {
             System.out.println("Sorry, there are no songs in the queue. Use choose from the menu to add some.");
         } else {

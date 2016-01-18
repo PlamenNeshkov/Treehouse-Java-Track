@@ -26,6 +26,7 @@ public class SongBook {
     public void importFrom(String filename) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
+
             while ((line = reader.readLine()) != null) {
                 String[] args = line.split("\\|");
                 addSong(new Song(args[0], args[1], args[2]));
@@ -67,6 +68,7 @@ public class SongBook {
 
     public List<Song> getSongsForArtist(String artistName) {
         List<Song> songs = byArtist().get(artistName);
+
         songs.sort(new Comparator<Song>() {
             @Override
             public int compare(Song song1, Song song2) {
@@ -76,6 +78,7 @@ public class SongBook {
                 return song1.mTitle.compareTo(song2.mTitle);
             }
         });
+
         return songs;
     }
 }
