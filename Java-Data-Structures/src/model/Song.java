@@ -2,7 +2,7 @@ package model;
 
 public class Song {
     private String mArtist;
-    private String mTitle;
+    protected String mTitle;
     private String mVideoUrl;
 
     public Song(String artist, String title, String videoUrl) {

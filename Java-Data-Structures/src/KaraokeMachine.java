@@ -15,7 +15,7 @@ public class KaraokeMachine {
     public KaraokeMachine(SongBook songBook) {
         mSongBook = songBook;
         mReader = new BufferedReader(new InputStreamReader(System.in));
-        mSongQueue = new ArrayDeque<Song>();
+        mSongQueue = new ArrayDeque<>();
         mMenu = new HashMap<>();
         mMenu.put("add", "Add a new song to the song book");
         mMenu.put("play", "Play next song in the queue");
@@ -120,6 +120,5 @@ public class KaraokeMachine {
                     song.getTitle(),
                     song.getArtist());
         }
-
     }
 }
