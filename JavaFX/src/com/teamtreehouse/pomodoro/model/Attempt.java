@@ -29,4 +29,21 @@ public class Attempt {
     public void setMessage(String message) {
         mMessage = message;
     }
+
+    public void tick() {
+        mRemainingSeconds--;
+    }
+
+    @Override
+    public String toString() {
+        return "Attempt{" +
+                "mMessage='" + mMessage + '\'' +
+                ", mRemainingSeconds=" + mRemainingSeconds +
+                ", mKind=" + mKind +
+                '}';
+    }
+
+    public void save() {
+        System.out.printf("Saving %s%n", this);
+    }
 }
